@@ -1,7 +1,43 @@
 
 
 // tạo hiệu ứng nạp dữ liệu từ từ -> chỉ nạp khi người dùng có nhu cầu
-var ESE_load_data_after_click_search_box = false;
+var ESE_load_data_after_click_search_box = false,
+	ESE_waiting_search_running = null;
+
+//
+function ESE_settime_running_echbay_search ( key, jd ) {
+	clearTimeout( ESE_waiting_search_running );
+	ESE_waiting_search_running = setTimeout(function () {
+		ESE_settimeout_running_echbay_search( key,jd );
+	}, 800);
+}
+
+//
+function ESE_settimeout_running_echbay_search ( key, jd ) {
+	if (key != '') {
+		key = ESE_non_mark_seo(key);
+//		console.log(key);
+	}
+	
+	//
+	var search_result = jQuery('div[data-id="' + jd + '"] li');
+	
+	//
+	if (key != '') {
+		search_result.hide().each(function() {
+			if (a != '') {
+				var a = jQuery(this).attr('data-key') || '';
+				if (a != '' && a.split(key).length > 1) {
+					jQuery(this).show();
+				}
+			}
+		});
+		
+		jQuery('div[data-id="' + jd + '"] li[data-show="1"]').show()
+	} else {
+		jQuery('div[data-id="' + jd + '"] li').show()
+	}
+}
 
 function ESE_javascript_running ( i ) {
 	if ( typeof i != 'number' ) {
@@ -186,30 +222,7 @@ function ESE_javascript_load_data ( i ) {
 			}
 			
 			//
-			var key = jQuery(this).val() || '';
-			if (key != '') {
-				key = ESE_non_mark_seo(key);
-//				console.log(key);
-			}
-			
-			//
-			var search_result = jQuery('div[data-id="' + jd + '"] li');
-			
-			//
-			if (key != '') {
-				search_result.hide().each(function() {
-					if (a != '') {
-						var a = jQuery(this).attr('data-key') || '';
-						if (a != '' && a.split(key).length > 1) {
-							jQuery(this).show();
-						}
-					}
-				});
-				
-				jQuery('div[data-id="' + jd + '"] li[data-show="1"]').show()
-			} else {
-				jQuery('div[data-id="' + jd + '"] li').show()
-			}
+			ESE_settime_running_echbay_search ( jQuery(this).val() || '', jd );
 			
 		});
 	});

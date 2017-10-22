@@ -353,6 +353,8 @@ alert("Update done!");
 				'ese_plugin_version' => $this->eb_plugin_media_version,
 			) );
 			
+			$main = $this->template ( $main, $this->default_setting, 'aaa' );
+			
 			echo $main;
 			
 			echo '<p>* Other <a href="' . $this->web_link . '/' . $this->eb_plugin_admin_dir . '/plugin-install.php?s=itvn9online&tab=search&type=author" target="_blank">WordPress Plugins</a> written by the same author. Thanks for choose us!</p>';
