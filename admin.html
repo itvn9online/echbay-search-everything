@@ -1,0 +1,47 @@
+<link rel="stylesheet" href="{tmp.ese_plugin_url}admin.css?v={tmp.ese_plugin_version}" type="text/css" />
+<div class="efm-exemple-relative">
+	<div class="wrap">
+		<h1>Setting Search Everything (select taxonomy and post type for search)</h1>
+		<form name="echbay_config_for_efm" id="echbay_config_for_efm" method="post" action="" class="validate" target="target_eb_plugins_iframe">
+			<input type="hidden" id="_ebnonce" name="_ebnonce" value="{tmp._ebnonce}" />
+			<input type="hidden" id="license" name="_ese_license" value="{tmp.license}" />
+			<input type="hidden" id="hide_powered" name="_ese_hide_powered" value="{tmp.hide_powered}" />
+			<input type="hidden" id="search_for_taxonomy" name="_ese_search_for_taxonomy" value="{tmp.search_for_taxonomy}" />
+			<input type="hidden" id="search_for_post_type" name="_ese_search_for_post_type" value="{tmp.search_for_post_type}" />
+			<p>* Note: if values set to zero or null, this plugin create search for all taxonomy or all post type.</p>
+			<table class="form-table">
+				<tr class="form-field form-required term-name-wrap">
+					<th scope="row"><label for="cache_time">Time for reset cache</label></th>
+					<td><input type="number" name="_ese_cache_time" id="cache_time" value="{tmp.cache_time}" style="width:90px;" />
+						seconds
+						<p class="description">If set this value &lt; 60 seconds, the cache will been disable.</p></td>
+				</tr>
+				<tr class="form-field form-required term-name-wrap">
+					<th scope="row"><label for="limit_post_search">Limit for seact post type</label></th>
+					<td><input type="number" name="_ese_limit_post_search" id="limit_post_search" value="{tmp.limit_post_search}" style="width:90px;" />
+						<p class="description">Limit post select in post type.</p></td>
+				</tr>
+				<tr class="form-field form-required term-name-wrap">
+					<th scope="row"><label>Select taxonomy</label></th>
+					<td id="list_search_for_taxonomy">{tmp.str_all_taxonomy}</td>
+				</tr>
+				<tr class="form-field form-required term-name-wrap">
+					<th scope="row"><label>Select post type</label></th>
+					<td id="list_search_for_post_type">{tmp.str_all_post_type}</td>
+				</tr>
+			</table>
+			<div class="eb-plugin-submit">
+				<input type="submit" name="submit" id="submit" class="button button-primary" value="Save Changes" />
+			</div>
+		</form>
+	</div>
+</div>
+<iframe id="target_eb_plugins_iframe" name="target_eb_plugins_iframe" src="about:blank" width="750" height="1">AJAX form</iframe>
+<script type="text/javascript">
+if ( document.domain == 'localhost' && typeof jQuery == 'function' ) {
+	jQuery('#target_eb_plugins_iframe').height( 600 ).attr({
+		height: 600
+	});
+}
+</script> 
+<script type="text/javascript" src="{tmp.ese_plugin_url}admin.js?v={tmp.ese_plugin_version}"></script> 
